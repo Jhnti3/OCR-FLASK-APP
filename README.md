@@ -63,3 +63,26 @@ pip install -r requirements.txt
 
 # Rode a aplicação
 python app.py
+
+## 📂 Estrutura do Projeto
+
+ocr/
+├── app.py
+├── requirements.txt
+├── templates/
+│   └── index.html
+├── static/
+│   └── uploads/
+│       └── (imagens temporárias)
+
+
+📝 Autor
+Desenvolvido por Johnata Boaventura Alves
+GitHub • LinkedIn
+
+📌 Observações
+O arquivo clipboard.png é sobrescrito automaticamente a cada nova colagem de imagem.
+
+As imagens são salvas em static/uploads/ temporariamente.
+
+Para uso online, considere fazer deploy em serviços como Render, Hugging Face Spaces ou Heroku.
