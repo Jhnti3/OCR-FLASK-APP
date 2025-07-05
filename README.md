@@ -45,24 +45,7 @@ Você pode **colar um print (Ctrl+V)** ou **enviar uma imagem** e obter o texto 
 - Git instalado
 - Tesseract OCR instalado
 
-### Passos:
-
-```bash
-# Clone o projeto
-git clone https://github.com/Jhnti3/OCR-FLASK-APP.git
-cd OCR-FLASK-APP
-
-# Crie e ative o ambiente virtual
-python -m venv venv
-venv\Scripts\activate  # Windows PowerShell
-# ou
-venv\Scripts\activate.bat  # CMD
-
-# Instale as dependências
-pip install -r requirements.txt
-
-# Rode a aplicação
-python app.py
+---
 
 ## 📂 Estrutura do Projeto
 
@@ -86,3 +69,22 @@ O arquivo clipboard.png é sobrescrito automaticamente a cada nova colagem de im
 As imagens são salvas em static/uploads/ temporariamente.
 
 Para uso online, considere fazer deploy em serviços como Render, Hugging Face Spaces ou Heroku.
+
+### Passos:
+
+```bash
+# Clone o projeto
+git clone https://github.com/Jhnti3/OCR-FLASK-APP.git
+cd OCR-FLASK-APP
+
+# Crie e ative o ambiente virtual
+python -m venv venv
+venv\Scripts\activate  # Windows PowerShell
+# ou
+venv\Scripts\activate.bat  # CMD
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Rode a aplicação
+python app.py
