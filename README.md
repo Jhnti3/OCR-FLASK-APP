@@ -49,6 +49,7 @@ Você pode **colar um print (Ctrl+V)** ou **enviar uma imagem** e obter o texto 
 
 ## 📂 Estrutura do Projeto
 
+```bash
 ocr/
 ├── app.py
 ├── requirements.txt
@@ -57,13 +58,13 @@ ocr/
 ├── static/
 │   └── uploads/
 │       └── (imagens temporárias)
+```
 
-
-📝 Autor
+## 📝 Autor
 Desenvolvido por Johnata Boaventura Alves
 GitHub • LinkedIn
 
-📌 Observações
+## 📌 Observações
 O arquivo clipboard.png é sobrescrito automaticamente a cada nova colagem de imagem.
 
 As imagens são salvas em static/uploads/ temporariamente.
