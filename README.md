@@ -61,7 +61,7 @@ ocr/
 ```
 
 ## 📝 Autor
-Desenvolvido por Johnata Boaventura Alves
+Desenvolvido por Jhnti3
 GitHub • LinkedIn
 
 ## 📌 Observações
