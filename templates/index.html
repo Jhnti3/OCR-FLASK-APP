@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OCR - Image to Text</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        input[type="file"] {
+            padding: 6px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button i {
+            margin-right: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        #msg {
+            color: green;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        #previewContainer img {
+            max-width: 100%;
+            margin-top: 10px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Extração de Texto da Imagem</h1>
+
+    <form id="form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageInput" accept="image/*" required>
+        <button type="submit">
+            <i class="fas fa-upload"></i> Extrair Texto
+        </button>
+    </form>
+
+    <div id="previewContainer" style="margin-top: 20px;"></div>
+
+    {% if text %}
+    <h2>Texto extraído:</h2>
+    <textarea id="extractedText" rows="10">{{ text }}</textarea>
+    <br>
+    <button type="button" onclick="copiarTexto()">
+        <i class="fas fa-copy"></i> Copiar Texto
+    </button>
+    <span id="msg"></span>
+    {% endif %}
+
+    <script>
+    function copiarTexto() {
+        const textarea = document.getElementById("extractedText");
+        const msg = document.getElementById("msg");
+        textarea.select();
+        document.execCommand("copy");
+        msg.textContent = "Texto copiado!";
+        setTimeout(() => msg.textContent = "", 2000);
+    }
+
+    // Preview quando colar imagem
+    document.addEventListener("paste", function (event) {
+        const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+        for (const item of items) {
+            if (item.type.indexOf("image") === 0) {
+                const blob = item.getAsFile();
+
+                const img = document.createElement("img");
+                img.src = URL.createObjectURL(blob);
+
+                const container = document.getElementById("previewContainer");
+                container.innerHTML = "";
+                container.appendChild(img);
+
+                const fileInput = document.getElementById("imageInput");
+                const dt = new DataTransfer();
+                dt.items.add(new File([blob], "clipboard.png", { type: blob.type }));
+                fileInput.files = dt.files;
+            }
+        }
+    });
+
+    // Preview quando escolher imagem manualmente
+    document.getElementById("imageInput").addEventListener("change", function () {
+        const file = this.files[0];
+        if (file && file.type.startsWith("image/")) {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+
+            const container = document.getElementById("previewContainer");
+            container.innerHTML = "";
+            container.appendChild(img);
+        }
+    });
+    </script>
+</body>
+</html>
